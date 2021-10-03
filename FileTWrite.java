@@ -1,38 +1,29 @@
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Random;   
-
 public class FileTWrite extends Thread{
     private String name;
     private int n;
+    Write wFile;
 
-    FileTWrite(String name, int n){
+    public FileTWrite(String name, int n, Write wFile){
         super();
         this.name = name;
         this.n = n;
+        this.wFile = wFile;
     }
+
 
     public void run() {
-
-        try{
-            
-            FileWriter mWriter = new FileWriter(name);
-            for(int i = 0; i < n; i++){
-                String s = " " + (int)(Math.random()*100);
-                mWriter.write(s);
-                System.out.println("Dang ghi file " + name);
-                try{
-                    Thread.sleep(1000);
-                } catch(InterruptedException e){
-
-                }
-            }
-            mWriter.close();
-            System.out.println("Ghi file "+ name + "  thanh cong");
-
-        } catch (IOException e){
-            System.err.println("Loi");
-        }
+        wFile.WriteFile(name, n);
     }
 }
+
+
+class TestFileWrite {
+    public static void main(String[] args) {
+
+        Write wFile = new Write();
+        new FileTWrite("Bai1.txt", 20, wFile).start();
+        new FileTWrite("Bai2.txt", 30, wFile).start();
+        new FileTWrite("Bai3.txt", 40, wFile).start();
+    }
+}
+

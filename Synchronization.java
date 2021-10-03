@@ -11,6 +11,36 @@ class Table {
  
     }
 }
+
+
+class LopA{
+    synchronized void Display(String s){
+        System.out.print("< " + s);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(" >");
+    }
+}
+
+class LopB extends Thread{
+    LopA a;
+    String b;
+
+    LopB(LopA a, String b){
+        this.a = a;
+        this.b = b;
+    }
+
+    @Override
+    public void run() {
+        a.Display(b);
+        super.run();
+    }
+}
  
 
 public class Synchronization {
@@ -31,8 +61,20 @@ public class Synchronization {
                 super.run();
             }
         };
-        
+
         t1.start();
         t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        LopA a = new LopA();
+        new LopB(a, "Hello").start();
+        new LopB(a, "Xin chaof").start();
+        new LopB(a, "CHao").start();
     }
 }
