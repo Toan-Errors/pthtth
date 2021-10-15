@@ -20,15 +20,19 @@ public class Client{
 
             for(int i = '0'; i <= 'B'; i++){
                 os.write(i);
+                byte[] b = new byte[50];
                 int ch = is.read();
-                System.out.println((char)ch);
+                String kq = new String(b, 0, ch);
+                System.out.println(kq);
                 Thread.sleep(2000);
             }
             System.out.print("Nhap 1 ki tu bat ki: ");
             int x = System.in.read();
             os.write(x);
+            byte[] b = new byte[50];
             int ch = is.read();
-            Thread.sleep(2000);
+            String kq = new String(b, 0, ch);
+            System.out.println(kq);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

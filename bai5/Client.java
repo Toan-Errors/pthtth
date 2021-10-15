@@ -11,17 +11,19 @@ public class Client {
         
         try {
             DatagramSocket s = new DatagramSocket();
-            while(true){
+            String str;
+            do{
                 System.out.println("-----------Menu------------");
                 System.out.println("Chon chuc nang");
                 System.out.println("1. Time");
                 System.out.println("2. Date");
                 System.out.println("3. Date time");
+                System.out.println("0. exit");
                 System.out.println("---------------------------");
                 InputStreamReader isr = new InputStreamReader(System.in);
                 BufferedReader br = new BufferedReader(isr);
                 System.out.print("Lua chon: ");
-                String str = br.readLine();
+                str = br.readLine();
                 byte[] data = str.getBytes();
                 DatagramPacket pkt = new DatagramPacket(data, data.length, InetAddress.getByName("localhost"), 7777);
                 s.send(pkt);
@@ -31,7 +33,7 @@ public class Client {
                 s.receive(nhan);
                 String fromServer = new String(nhan.getData(), 0, nhan.getLength());
                 System.out.println("Server tra ve >> " + fromServer);
-            }
+            }while(str != "0");
         } catch (Exception e) {
         }
     }
