@@ -24,18 +24,11 @@ public class Client{
                 System.out.println((char)ch);
                 Thread.sleep(2000);
             }
-            
-            try {
-                do{
-                    System.out.print("Nhap 1 ki tu bat ki: ");
-                    int x = System.in.read();
-                    os.write(x);
-                    int ch = is.read();
-                    Thread.sleep(2000);
-                } while (true);
-            } catch (Exception e) {
-                //TODO: handle exception
-            }
+            System.out.print("Nhap 1 ki tu bat ki: ");
+            int x = System.in.read();
+            os.write(x);
+            int ch = is.read();
+            Thread.sleep(2000);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
