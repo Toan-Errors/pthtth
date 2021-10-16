@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-
 public class Client {
     public static void main(String[] args) {
         try {
@@ -19,6 +18,7 @@ public class Client {
             String file = br.readLine();
             String yeucau = "READ " + file;
             
+            //Gui file
             DatagramPacket dp_send = new DatagramPacket(yeucau.getBytes(), yeucau.length(), add_server, 7777);
             s.send(dp_send);
 
@@ -32,12 +32,13 @@ public class Client {
 
             //Xu ly gui file thanh cong
             byte b[] = new byte[60000];
+            
             DatagramPacket dp_recevie = new DatagramPacket(b, b.length);
             s.receive(dp_recevie);
-            FileOutputStream fo = new FileOutputStream("/file/" + name);
-            fo.write(b, 0, b.length);
+            FileOutputStream fo = new FileOutputStream("C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\file\\" + name);
+            String str = new String(b, 0, b.length);
+            fo.write(str.getBytes());
             System.out.println("Ghi file thanh cong!!!");
-            System.out.println(new String(dp_recevie.getData(), 0, dp_recevie.getLength()));
 
         } catch (Exception e) {
             //  : handle exception

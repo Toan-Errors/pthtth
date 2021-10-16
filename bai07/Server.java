@@ -20,19 +20,20 @@ public class Server {
             System.out.println(kq);
             String file = kq.substring("READ ".length(), kq.length());
             File docfile = new File(file);
-
+            //Name file
             System.out.println("Dang doc file: " + docfile.getName());
             byte[] filename = docfile.getName().getBytes();
             DatagramPacket dp_send_filename = new DatagramPacket(filename, filename.length, dp_receive.getAddress(), dp_receive.getPort());
             s.send(dp_send_filename);
 
+            //Gui file
             if(docfile.exists()){
                 FileInputStream fo = new FileInputStream(file);
                 int n = fo.available();
-                byte fileread[] = new byte[6000];
+                byte fileread[] = new byte[60000];
                 fo.read(fileread, 0, n);
                 DatagramPacket dp_send = new DatagramPacket(fileread, fileread.length, dp_receive.getAddress(), dp_receive.getPort());
-                s.receive(dp_send);
+                s.send(dp_send);
                 System.out.println(new String(dp_send.getData(), 0, dp_send.getLength()));
                 System.out.println("Gui file thanh cong");
                 fo.close();
