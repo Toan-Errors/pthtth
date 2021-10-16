@@ -11,11 +11,9 @@ public class Server {
         try {
             ServerSocket ss = new ServerSocket(serverPort);
             System.out.println("Server da duoc tao");
-
-            while(true){
-                DemSo ds = new DemSo(ss);
-                ds.start();
-            }
+            Socket s = ss.accept();
+            DemSo ds = new DemSo(s);
+            ds.start();
             
         } catch (IOException e) {
             // TODO Auto-generated catch block
