@@ -29,10 +29,12 @@ public class Client{
             System.out.print("Nhap 1 ki tu bat ki: ");
             int x = System.in.read();
             os.write(x);
+
             byte[] b = new byte[50];
             int ch = is.read();
             String kq = new String(b, 0, ch);
             System.out.println(kq);
+            s.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
