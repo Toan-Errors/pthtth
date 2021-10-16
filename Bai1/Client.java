@@ -18,7 +18,7 @@ public class Client{
             InputStream is = s.getInputStream();
             OutputStream os = s.getOutputStream();
 
-            for(int i = '0'; i <= 'B'; i++){
+            for(int i = 0; i <= 9; i++){
                 os.write(i);
                 byte[] b = new byte[50];
                 int ch = is.read();

@@ -17,11 +17,9 @@ public class DemSo extends Thread{
     public void run() {
         
             try {
-                while(true){
                     Socket s = ss.accept();
                     InputStream is = s.getInputStream();
                     OutputStream os = s.getOutputStream();
-                    while(true){
                         int ch = 0;
                         String kq = "";
                         ch = is.read();
@@ -62,8 +60,6 @@ public class DemSo extends Thread{
                         }
                         byte[] b = kq.getBytes();
                         os.write(b);   
-                    }
-                }
                 
                 
             } catch (IOException e) {
