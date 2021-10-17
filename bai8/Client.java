@@ -24,6 +24,12 @@ public class Client {
             s.send(dp_send);
             System.out.println("Gui du lieu thanh cong");
 
+            //Nhan
+            byte nhan[] = new byte[6000];
+            DatagramPacket dp_recevie = new DatagramPacket(nhan, nhan.length);
+            s.receive(dp_recevie);
+            System.out.println("Server >> " + new String(dp_recevie.getData(), 0, dp_recevie.getLength()));
+
         } catch (Exception e) {
             //TODO: handle exception
         }

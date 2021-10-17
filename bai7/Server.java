@@ -28,7 +28,7 @@ public class Server {
 
             //Gui file
             if(docfile.exists()){
-                FileInputStream fo = new FileInputStream(file);
+                FileInputStream fo = new FileInputStream(docfile);
                 int n = fo.available();
                 byte fileread[] = new byte[60000];
                 fo.read(fileread, 0, n);
