@@ -11,15 +11,18 @@ public class Client {
             DatagramSocket s = new DatagramSocket();
             Scanner sc = new Scanner(System.in);
             System.out.print("Nhap ten server: ");
-            String server = sc.nextLine();
-            String msg_in;
+            String client = sc.nextLine();
+            DatagramPacket dp_send_client = new DatagramPacket(client.getBytes(), client.length(), InetAddress.getByName("localhost"), 7777);
+            s.send(dp_send_client);
+            System.out.println("Client: " + client + " duoc tao thanh cong");
+            String msg_in;  
             //Send
             do{
                 System.out.println("Nhap tin nhan can gui nhap 'HET' de ket thuc");
                 System.out.print("Nhap >> ");
                 msg_in = sc.nextLine();
                 // Send
-                DatagramPacket dp_send = new DatagramPacket(msg_in.getBytes(), msg_in.length(), InetAddress.getByName(server), 7777);
+                DatagramPacket dp_send = new DatagramPacket(msg_in.getBytes(), msg_in.length(), InetAddress.getByName("localhost"), 7777);
                 s.send(dp_send);
 
                 //Nhan
