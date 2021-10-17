@@ -1,4 +1,4 @@
-package bai7;
+package bai7UDP;
 
 import java.io.BufferedReader;
 import java.io.File;
