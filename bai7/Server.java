@@ -1,4 +1,4 @@
-package bai07;
+package bai7;
 
 import java.io.File;
 import java.io.FileInputStream;

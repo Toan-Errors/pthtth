@@ -1,4 +1,4 @@
-package bai07;
+package bai7;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -35,7 +35,7 @@ public class Client {
             
             DatagramPacket dp_recevie = new DatagramPacket(b, b.length);
             s.receive(dp_recevie);
-            FileOutputStream fo = new FileOutputStream("C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\file\\" + name);
+            FileOutputStream fo = new FileOutputStream("C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\bai7\\file\\" + name);
             String str = new String(b, 0, b.length);
             fo.write(str.getBytes());
             System.out.println("Ghi file thanh cong!!!");
