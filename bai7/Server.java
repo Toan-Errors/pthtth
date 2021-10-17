@@ -1,9 +1,12 @@
 package bai7;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) {
@@ -25,24 +28,31 @@ public class Server {
             byte[] filename = docfile.getName().getBytes();
             DatagramPacket dp_send_filename = new DatagramPacket(filename, filename.length, dp_receive.getAddress(), dp_receive.getPort());
             s.send(dp_send_filename);
-
+            String thongbao = "lỗi";
+            String filepath = "C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\bai7\\file\\" + docfile.getName();
             //Gui file
             if(docfile.exists()){
-                FileInputStream fo = new FileInputStream(docfile);
-                int n = fo.available();
-                byte fileread[] = new byte[60000];
-                fo.read(fileread, 0, n);
-                DatagramPacket dp_send = new DatagramPacket(fileread, fileread.length, dp_receive.getAddress(), dp_receive.getPort());
-                s.send(dp_send);
-                System.out.println(new String(dp_send.getData(), 0, dp_send.getLength()));
-                System.out.println("Gui file thanh cong");
-                fo.close();
-            } else {
-                String err_notfound = "Khong tim thay file";
-                System.out.println(err_notfound);
-                DatagramPacket dp_send_err = new DatagramPacket(err_notfound.getBytes(), err_notfound.length(), dp_receive.getAddress(), dp_receive.getPort());
-                s.send(dp_send_err);
-            }
+                String data= "";
+                Scanner myReader = new Scanner(docfile);
+                while (myReader.hasNextLine()) {
+                    data += myReader.nextLine() + "\n";
+                }
+                myReader.close();
+                System.out.println("Noi dung file >> \n" + data);
+                File ghifile = new File(filepath);
+                if(!ghifile.exists()){
+                    ghifile.createNewFile();
+                }
+                FileWriter fw = new FileWriter(ghifile);
+                fw.write(data);
+
+                thongbao = "Thanh cong";
+                fw.close();
+            } 
+
+            DatagramPacket dp_send = new DatagramPacket(thongbao.getBytes(), thongbao.length(), dp_receive.getAddress(), dp_receive.getPort());
+            s.send(dp_send);
+
             s.close();
 
         } catch (Exception e) {

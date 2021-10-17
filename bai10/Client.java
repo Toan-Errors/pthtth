@@ -12,7 +12,6 @@ public class Client {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nhap ten server: ");
             String server = sc.nextLine();
-            InetAddress address = InetAddress.getByName(server);
             String msg_in;
             //Send
             do{
@@ -20,7 +19,7 @@ public class Client {
                 System.out.print("Nhap >> ");
                 msg_in = sc.nextLine();
                 // Send
-                DatagramPacket dp_send = new DatagramPacket(msg_in.getBytes(), msg_in.length(), address, 7777);
+                DatagramPacket dp_send = new DatagramPacket(msg_in.getBytes(), msg_in.length(), InetAddress.getByName(server), 7777);
                 s.send(dp_send);
 
                 //Nhan
