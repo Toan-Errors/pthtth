@@ -1,10 +1,10 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
-        String str = "- 10 20\\n";
-        int n = str.indexOf("\\n");
-        System.out.println(str.substring(0, n));
-        
+        Scanner sc = new Scanner(System.in);
+        int x = Integer.parseInt(sc.nextLine());
+        System.out.println(x);
     }
 }
