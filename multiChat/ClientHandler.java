@@ -20,7 +20,6 @@ public class ClientHandler extends Thread{
             this.dp_send = new DatagramPacket(buf, buf.length, InetAddress.getByAddress("localhost", buf), 7777);
             s.receive(dp_receive);
             this.username = new String(buf);
-            this.client.add(this)
         } catch (Exception e) {
             //TODO: handle exception
         }
