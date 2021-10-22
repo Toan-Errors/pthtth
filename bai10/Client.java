@@ -12,7 +12,7 @@ public class Client {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nhap ten server: ");
             String client = sc.nextLine();
-            DatagramPacket dp_send_client = new DatagramPacket(client.getBytes(), client.length(), InetAddress.getByName(client), 7777);
+            DatagramPacket dp_send_client = new DatagramPacket(client.getBytes(), client.length(), InetAddress.getByName("localhost"), 7777);
             s.send(dp_send_client);
             System.out.println("Client: " + client + " duoc tao thanh cong");
             String msg_in;  
@@ -32,7 +32,7 @@ public class Client {
                 s.receive(dp_receive);
 
                 System.out.println("Server >> " + new String(dp_receive.getData(), 0, dp_receive.getLength()));
-            } while(msg_in != "het");
+            } while(!"het".equals(msg_in));
 
         } catch (Exception e) {
             //TODO: handle exception
