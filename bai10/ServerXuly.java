@@ -20,7 +20,6 @@ public class ServerXuly extends Thread{
     @Override
     public void run() {
         try {
-            do{
                 byte bclient[] = new byte[6000];
                 DatagramPacket dp_receive_client = new DatagramPacket(bclient, bclient.length);
                 s.receive(dp_receive_client);
@@ -55,7 +54,6 @@ public class ServerXuly extends Thread{
                     DatagramPacket dp_send = new DatagramPacket(notification.getBytes(), notification.length(), dp_receive.getAddress(), dp_receive.getPort());
                     s.send(dp_send);
                 }
-            } while(true);
         } catch (Exception e) {
             //TODO: handle exception
         }

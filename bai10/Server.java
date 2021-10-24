@@ -5,12 +5,15 @@ import java.net.DatagramSocket;
 
 public class Server {
     public static void main(String[] args) {
+        DatagramSocket s = null;
         try {
-            
-            DatagramSocket s = new DatagramSocket(7777);
+            s = new DatagramSocket(7777);
             System.out.println("UDP server da khoi tao");
-            new ServerXuly(s).start();
-            
+            for(int i = 0; i <2; i++) {
+                Thread t = new ServerXuly(s);
+                t.start();
+                System.out.println(t.getName());
+            }
         } catch (Exception e) {
             //TODO: handle exception
         }
