@@ -1,10 +1,13 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class test {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int x = Integer.parseInt(sc.nextLine());
-        System.out.println(x);
+        Scanner scanner = new Scanner(System.in);
+        
+        String sms = scanner.nextLine();
+        String[] str = sms.split("\n");
+        for (String string : str) {
+            System.out.println(string);
+        }
     }
 }

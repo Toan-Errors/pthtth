@@ -1,4 +1,4 @@
-package multiChat;
+package SendMenu;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -27,7 +27,7 @@ public class Client {
             System.out.println("Lỗi");
         } else {
             
-            client.send(SendData(name + " đã tham gia vào phòng"));
+            client.send(SendData(name + " da ket noi"));
 
             new ReadClient(client).start();
             new WriteClient(client, address, port, name).start();
@@ -57,7 +57,7 @@ class ReadClient extends Thread {
         try {
             while(true){
                 String sms = receiveData();
-                System.out.println(sms);
+                System.out.print(sms);
             }
         } catch (Exception e) {
             //TODO: handle exception

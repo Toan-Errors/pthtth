@@ -1,4 +1,4 @@
-package multiChat;
+package SendMenu;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,54 +32,89 @@ public class Server {
 
     private void execute() throws IOException {
         DatagramSocket server = new DatagramSocket(port);
-        new WriteServer(server).start();
         System.out.println("Server started");
-        try {
-               
-            while(true){
-                String sms = receiveData(server);
-                for(DatagramPacket item : ListSK.keySet()) {
-                    if(!(item.getAddress().equals(clientIP) && item.getPort() == clientPort)){
-                        DatagramPacket send = SendData(sms, item.getAddress(), item.getPort());
-                        server.send(send);
+        
+        new WriteServer(server).start();
+        new Thread(() -> {
+            try {
+                while(true){
+                    
+                    String sms = receiveData(server);
+                    for(DatagramPacket item : ListSK.keySet()) {
+                        if((item.getAddress().equals(clientIP) && item.getPort() == clientPort)){
+                            if(sms.contains(":")){
+                                System.out.println((sms));
+                                DatagramPacket send = SendData("Server: " + Handle(sms), item.getAddress(), item.getPort());
+                                server.send(send);
+                            } else {
+                                System.out.println(sms);
+                            }
+                        }
                     }
-                }
-                System.out.println(sms);
-            } 
-        } catch (Exception e) {
-            //TODO: handle exception
-        }    
+
+                    DatagramPacket packet = SendData(Menu(), clientIP, clientPort);
+                    server.send(packet);
+                } 
+            } catch (Exception e) {
+                //TODO: handle exception
+            }   
+        }).start(); 
     }
-    private void WriteFile(String sms){
+
+    public String Handle(String sms){
+        String msg = sms.split(": ")[1];
+        String kq = "";
+        int chon = Integer.parseInt(msg);
+        switch (chon){
+            case 0:
+                kq = "ban da chon lua nay\n";
+                break;
+            default:
+                kq = "chua co chuc nang nay\n";
+                break;
+        }
+        return kq;
+    }
+
+    private String Menu(){
+        return "---------------MENU--------------\n"
+                +"1. 1 \n"
+                +"2. 1 \n"
+                +"3. 1 \n"
+                +"4. 1 \n"
+                +"5. 1 \n"
+                +"----------------END--------------\n"
+                +"nhap lua chon: ";
+
+    }
+
+    private void GhiFile(String sms){
         try {
-            String path = "C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\multiChat\\";
-            String[] str = sms.split(":");
+            String path = "C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\multichatArraylist";
+            String[] str = sms.split(": ");
             String name = str[0];
             String msg = str[1];
-            String filepath = path + name + ".txt";
+            String filepath = path + "\\" + name + ".txt";
             File file = new File(filepath);
-            if(!file.exists()) {
-                file.createNewFile();
-            } 
-            FileWriter fw = new FileWriter(file);
-            fw.write(msg);
-            fw.close();
+            
+            FileWriter writer = new FileWriter(file, true);
+            writer.append(msg + "\n");
+            writer.close();
+
         } catch (Exception e) {
             //TODO: handle exception
         }
-        
     }
+
     private String receiveData(DatagramSocket server) throws IOException{
-        byte[] buf = new byte[1024];
+        byte buf[] = new byte[1024];
         
         DatagramPacket receive = new DatagramPacket(buf, buf.length);
         server.receive(receive);
         clientIP = receive.getAddress();
         clientPort = receive.getPort();
         checkDuplicate(receive);
-        String str = new String(receive.getData(), 0, receive.getLength());
-        byte[] bytes = str.getBytes(Charset.forName("UTF-8"));
-        return new String(bytes, "UTF-8");
+        return new String(receive.getData(), 0, receive.getLength());
     }
 
     private void checkDuplicate(DatagramPacket packet) {
