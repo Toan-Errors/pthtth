@@ -18,7 +18,7 @@ public class CheckImplement extends UnicastRemoteObject implements CheckInterfac
         String line;
         boolean check = false;
         try {
-            BufferedReader br = new BufferedReader(new java.io.FileReader("C:\\Users\\zlove\\Documents\\GitHub\\pthtth\\bai02\\account.txt"));
+            BufferedReader br = new BufferedReader(new java.io.FileReader("/home/errors/GitHub/pthtth/bai02/account.txt"));
             while ((line = br.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(line, "|");
                 account.put(st.nextToken(), st.nextToken());
