@@ -20,7 +20,7 @@ public class GUIClient extends JFrame{
         Registry registry = java.rmi.registry.LocateRegistry.getRegistry("localhost", 4444);
         Interface obj = (Interface) registry.lookup("Server");
         JFrame frame = new JFrame("Client");
-        frame.setSize(350, 300);
+        frame.setSize(350, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setLocationRelativeTo(null);

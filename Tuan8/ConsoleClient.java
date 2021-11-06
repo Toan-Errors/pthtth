@@ -14,7 +14,7 @@ public class ConsoleClient {
             int n;
             Scanner sc = new Scanner(System.in);
             do{
-                System.out.println(obj.Menu());
+                System.out.print(obj.Menu());
                 n = sc.nextInt();
                 Select(n, obj);
             } while(n != 0);
