@@ -6,7 +6,7 @@ public class Server {
         try {
             Implement obj = new Implement();
             java.rmi.registry.LocateRegistry.createRegistry(4444);
-            java.rmi.Naming.rebind(name, obj);
+            java.rmi.Naming.bind(name, obj);
             System.out.println("Server is ready");
         } catch (Exception e) {
             //TODO: handle exception

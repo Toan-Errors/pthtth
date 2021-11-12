@@ -39,6 +39,31 @@ public class Implement extends UnicastRemoteObject implements Interface {
                 "0. Exit\n" +
                 "Nhap lua chon: ";
     }
+
+    @Override
+    public String Select(int n, String s) throws RemoteException {
+        String KQ = "";
+        if(s.equals("exit") || n == 0){
+            KQ = "Bye";
+            System.exit(0);
+        }
+        switch(n){
+            case 1:
+                KQ = "KQ: "+ UpperCase(s);
+                break;
+            case 2:
+                KQ = "KQ: "+ Reverse(s);
+                break;
+            case 0:
+                KQ = "Bye";
+                System.exit(0);
+                break;
+            default:
+                KQ = "Nhap sai";
+                break;
+        }
+        return KQ;
+    }
     
 
 }
