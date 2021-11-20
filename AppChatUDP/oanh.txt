@@ -1,0 +1,8 @@
+@hieu 5 3 1
+@tich 5 6 9
+thuong 50 10 5
+@thuong 50 10 5
+@read C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt
+@readupper C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt
+@readlower C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt
+exit

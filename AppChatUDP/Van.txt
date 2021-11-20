@@ -1,0 +1,9 @@
+huhu
+hihi
+@readnumber C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt
+@readrecevie C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt
+@readsolan C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt king
+@tinh + 6 9;- 8 9;* 100 200;/ 100 5
+@readupperstr C:\Users\zlove\Documents\GitHub\pthtth\GiuaKy2\data6.txt king
+exit
+exit

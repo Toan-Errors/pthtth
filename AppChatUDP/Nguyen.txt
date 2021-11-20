@@ -1,0 +1,4 @@
+chaof toan
+co gai kia tui bay
+exit
+hello
