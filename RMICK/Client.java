@@ -1,4 +1,4 @@
-package RMI;
+package RMICK;
 
 import java.rmi.registry.Registry;
 
